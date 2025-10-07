@@ -51,5 +51,39 @@ export const registerSchema = z.object({
         })
 });
 
+export const forgotPasswordSchema = z.object({
+    username: z
+        .string()
+        .min(1, {
+            message: 'Este campo é obrigatório',
+        })
+})
+
+export const resetPasswordSchema = z.object({
+    token: z
+        .string()
+        .min(1, {
+            message: 'Um token de reset deve ser fornecido',
+        }),
+    newPassword: z.
+        string()
+        .min(1, {
+            message: 'Este campo é obrigatório',
+        })
+        .min(8, {
+            message: 'A senha deve ter pelo menos 8 caracteres',
+        }),
+    confirmPassword: z
+        .string()
+        .min(1, {
+            message: 'Este campo é obrigatório',
+        })
+}).refine((data) => data.newPassword === data.confirmPassword, {
+    message: 'As senhas devem ser iguais',
+    path: ['confirmPassword'],
+})
+
 export type LoginSchema = z.infer<typeof loginSchema>;
 export type RegisterSchema = z.infer<typeof registerSchema>;
+export type ForgotPasswordSchema = z.infer<typeof forgotPasswordSchema>;
+export type ResetPasswordSchema = z.infer<typeof resetPasswordSchema>;

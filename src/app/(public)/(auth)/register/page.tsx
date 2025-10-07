@@ -25,7 +25,7 @@ export default function RegisterPage() {
     const onSubmit = async (data: RegisterSchema) => {
         setIsLoading(true)
         try {
-            const result = await fetch(`${process.env.NEXT_PUBLIC_USER_BASE}`, {
+            const result = await fetch(`${process.env.NEXT_PUBLIC_REGISTER_USER}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

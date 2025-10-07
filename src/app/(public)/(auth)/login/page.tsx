@@ -23,7 +23,7 @@ export default function LoginPage() {
     const onSubmit = async (data: LoginSchema) => {
         setIsLoading(true)
         try {
-            const result = await fetch(`${process.env.NEXT_PUBLIC_AUTH_BASE}/login`, {
+            const result = await fetch(`${process.env.NEXT_PUBLIC_LOGIN_ROUTE}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
